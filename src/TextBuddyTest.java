@@ -22,6 +22,7 @@ public class TextBuddyTest {
 		assertEquals(1, TextBuddy.getLineCount());
 		assertEquals("abc\n",TextBuddy.getCurrentFileContent());
 	}
+	
 	@Test
 	public void testDelete() {
 		TextBuddy.handleCommand("add abc");
@@ -32,6 +33,7 @@ public class TextBuddyTest {
 		assertEquals(0, TextBuddy.getLineCount());
 		assertEquals("",TextBuddy.getCurrentFileContent());
 	}
+	
 	@Test
 	public void testDisplay() {
 		//empty list
@@ -49,6 +51,14 @@ public class TextBuddyTest {
 				+ "2. jumps over a lazy dog",
 				TextBuddy.handleCommand("display"));
 		TextBuddy.handleCommand("add how now brown cow");
-		
+	}
+	
+	@Test
+	public void testSearch() {
+		TextBuddy.handleCommand("add a quick brown fox");
+		TextBuddy.handleCommand("add jumps over a lazy dog");
+		TextBuddy.handleCommand("add how now brown cow");
+		//invalid parameter
+		assertEquals(TextBuddy.handleCommand("search"),"Invalid parameters for search command");
 	}
 }
