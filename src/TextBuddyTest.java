@@ -37,5 +37,18 @@ public class TextBuddyTest {
 		//empty list
 		assertEquals("simple display with empty list", String.format("%s is empty",TEST_FILE_NAME),
 				TextBuddy.handleCommand("display"));
+		//list with entries
+		TextBuddy.handleCommand("add a quick brown fox");
+		TextBuddy.handleCommand("add jumps over a lazy dog");
+		assertEquals(2, TextBuddy.getLineCount());
+		assertEquals("a quick brown fox\n"
+				+ "jumps over a lazy dog\n",
+				TextBuddy.getCurrentFileContent());
+		assertEquals("simple display", 
+				  "1. a quick brown fox\n"
+				+ "2. jumps over a lazy dog",
+				TextBuddy.handleCommand("display"));
+		TextBuddy.handleCommand("add how now brown cow");
+		
 	}
 }
