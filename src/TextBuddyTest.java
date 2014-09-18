@@ -31,4 +31,10 @@ public class TextBuddyTest {
 		assertEquals(0, TextBuddy.getLineCount());
 		assertEquals("",TextBuddy.getCurrentFileContent());
 	}
+	@Test
+	public void testDisplay() {
+		//empty list
+		assertEquals("simple display with empty list", String.format("%s is empty",TEST_FILE_NAME),
+				TextBuddy.handleCommand("display"));
+	}
 }
