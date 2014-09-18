@@ -14,7 +14,12 @@ public class TextBuddyTest {
 
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		assertEquals("simple add", String.format("added to %s: \"abc\"", TEST_FILE_NAME),
+				TextBuddy.handleCommand("add abc"));
+		assertEquals("simple add without text", "Invalid parameters for add command",
+				TextBuddy.handleCommand("add"));
+		assertEquals(1, TextBuddy.getLineCount());
+		assertEquals("abc\n",TextBuddy.getCurrentFileContent());
 	}
 
 }
