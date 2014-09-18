@@ -10,6 +10,7 @@ public class TextBuddyTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		TextBuddy.initializeEnvironment(TEST_FILE_NAME);
+		TextBuddy.handleCommand("clear");
 	}
 
 	@Test
