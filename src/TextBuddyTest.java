@@ -24,6 +24,7 @@ public class TextBuddyTest {
 	}
 	@Test
 	public void testDelete() {
+		TextBuddy.handleCommand("add abc");
 		assertEquals("simple delete", String.format("deleted from %s: \"abc\"",TEST_FILE_NAME),
 				TextBuddy.handleCommand("delete 1"));
 		assertEquals("simple delete with non-existent index", "Invalid parameters for delete command",
