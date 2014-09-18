@@ -22,5 +22,13 @@ public class TextBuddyTest {
 		assertEquals(1, TextBuddy.getLineCount());
 		assertEquals("abc\n",TextBuddy.getCurrentFileContent());
 	}
-
+	@Test
+	public void testDelete() {
+		assertEquals("simple delete", String.format("deleted from %s: \"abc\"",TEST_FILE_NAME),
+				TextBuddy.handleCommand("delete 1"));
+		assertEquals("simple delete with non-existent index", "Invalid parameters for delete command",
+				TextBuddy.handleCommand("delete 1"));
+		assertEquals(0, TextBuddy.getLineCount());
+		assertEquals("",TextBuddy.getCurrentFileContent());
+	}
 }
