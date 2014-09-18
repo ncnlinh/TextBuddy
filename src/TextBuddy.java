@@ -85,7 +85,7 @@ public class TextBuddy {
 		}
 	}
 	
-	private static void initializeEnvironment(String filename) {
+	public static void initializeEnvironment(String filename) {
 		initializeVariables(filename);
 		readFromFile(file);
 	}
@@ -148,7 +148,7 @@ public class TextBuddy {
 		return scanner.nextLine().trim(); 
 	}
 
-	private static String handleCommand(String userCommand) {
+	public static String handleCommand(String userCommand) {
 		String commandString = getFirstWord(userCommand);
 		Command command = parseInputForCommand(commandString);
 		String parameter = extractParameter(userCommand);
