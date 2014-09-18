@@ -48,6 +48,9 @@ public class TextBuddy {
 	private static final String MSG_CLEAR = "all content deleted from %s";
 	private static final String MSG_EMPTY_FILE = "%s is empty";
 	
+	
+	private static final String END_LINE = "\n";
+	
 	/*
 	 *  This is used to indicate that the index for deleting the text line is invalid
 	 *  (either not exist, less than 1 or is not a number) 
@@ -213,18 +216,22 @@ public class TextBuddy {
 	 * This operation displays texts in texts ArrayList OR
 	 * returns empty file message if file is empty. 
 	 * @return	String type		feedback message if file empty
-	 * 			null			if can print lines
+	 * 			String type		texts' content if file is not empty
 	 */
 	private static String displayTexts() {
+		String textsContent = "";
 		if (texts.isEmpty()) {
 			return String.format(MSG_EMPTY_FILE,file.getName()); //feedback
 		} else {
 			for (int i = 0; i < texts.size(); i++) {
 				String line = texts.get(i);
-				showToUser(String.format(DISPLAY_FORMAT,i+1,line)); 
+				textsContent = textsContent + String.format(DISPLAY_FORMAT,i+1,line);
+				if (i != texts.size()-1) {
+					textsContent += END_LINE;
+				}
 				//display texts line by line
 			}
-			return null;
+			return textsContent;
 		}
 	}
 	
