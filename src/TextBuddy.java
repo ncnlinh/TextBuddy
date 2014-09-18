@@ -333,4 +333,61 @@ public class TextBuddy {
 			return Command.EXIT;
 		} else return Command.INVALID;
 	}
+
+	public static int getLineCount() {
+		BufferedReader br = null;
+		int lineCount = 0;
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			br = new BufferedReader(new FileReader(file));
+			while (br.readLine() != null) {
+				lineCount++;
+			}
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+			showToUser(String.format(MSG_IO_OPERATION_FAILED,file.getName()));
+			System.exit(-1);
+		} finally {
+			try {
+				if (br != null) {
+					br.close();
+				}
+			} catch (IOException ex) {
+				showToUser(String.format(MSG_IO_OPERATION_FAILED,file.getName()));
+				System.exit(-1);
+			}
+		}
+		return lineCount;
+	}
+	
+	public static String getCurrentFileContent() {
+		BufferedReader br = null;
+		String fileContent = "";
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			br = new BufferedReader(new FileReader(file));
+			String lineRead;
+			while ((lineRead = br.readLine()) != null) {
+				fileContent+=lineRead+"\n";
+			}
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+			showToUser(String.format(MSG_IO_OPERATION_FAILED,file.getName()));
+			System.exit(-1);
+		} finally {
+			try {
+				if (br != null) {
+					br.close();
+				}
+			} catch (IOException ex) {
+				showToUser(String.format(MSG_IO_OPERATION_FAILED,file.getName()));
+				System.exit(-1);
+			}
+		}
+		return fileContent;
+	}
 }
