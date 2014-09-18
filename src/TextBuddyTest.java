@@ -1,14 +1,14 @@
 import static org.junit.Assert.*;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class TextBuddyTest {
 	private static final String TEST_FILE_NAME = "testfile.txt";
 	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	@Before
+	public void setUpBefore() throws Exception {
 		TextBuddy.initializeEnvironment(TEST_FILE_NAME);
 		TextBuddy.handleCommand("clear");
 	}
