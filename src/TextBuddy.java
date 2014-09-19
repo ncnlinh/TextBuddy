@@ -191,27 +191,28 @@ public class TextBuddy {
 	}
 	
 	private static String searchTexts(String parameter) {
-		String feedback = "";
 		if (parameter == null) {
-			feedback = String.format(MSG_INVALID_PARAM, "search");
-		} else {
-			int numFoundItems = 0;
-			for (int i = 0; i<texts.size(); i++) {
-				String line = texts.get(i);
-				if (line.indexOf(parameter) != SUBSTRING_NOT_FOUND) {
-					numFoundItems++;
-					if (feedback == ""){
-						feedback += String.format(DISPLAY_FORMAT, i+1, line);
-					} else {
-						feedback += END_LINE + String.format(DISPLAY_FORMAT, i+1, line);
-					}
+			return String.format(MSG_INVALID_PARAM, "search");
+		}
+		
+		String feedback = "";
+		int numFoundItems = 0;
+		for (int i = 0; i<texts.size(); i++) {
+			String line = texts.get(i);
+			if (line.indexOf(parameter) != SUBSTRING_NOT_FOUND) {
+				numFoundItems++;
+				if (feedback.equals("")){
+					feedback += String.format(DISPLAY_FORMAT, i+1, line);
+				} else {
+					feedback += END_LINE + String.format(DISPLAY_FORMAT, i+1, line);
 				}
 			}
-			if (numFoundItems == 0) {
-				feedback = String.format(MSG_SEARCH_NOT_FOUND, parameter);
-			} else {
-				feedback = String.format(MSG_FOUND, numFoundItems) + END_LINE + feedback;
-			}
+		}
+		
+		if (numFoundItems == 0) {
+			feedback = String.format(MSG_SEARCH_NOT_FOUND, parameter);
+		} else {
+			feedback = String.format(MSG_FOUND, numFoundItems) + END_LINE + feedback;
 		}
 		return feedback;
 	}
