@@ -59,6 +59,7 @@ public class TextBuddyTest {
 		TextBuddy.handleCommand("add jumps over a lazy dog");
 		TextBuddy.handleCommand("add how now brown cow");
 		//invalid parameter
-		assertEquals(TextBuddy.handleCommand("search"),"Invalid parameters for search command");
+		assertEquals("Invalid parameters for search command",TextBuddy.handleCommand("search"));
+		assertEquals("abc not found",TextBuddy.handleCommand("search abc"));
 	}
 }
