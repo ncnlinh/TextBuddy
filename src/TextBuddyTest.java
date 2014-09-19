@@ -70,5 +70,32 @@ public class TextBuddyTest {
 	public void testSort(){
 		assertEquals("simple sort with empty list", String.format("%s is empty",TEST_FILE_NAME),
 				TextBuddy.handleCommand("sort"));
+		TextBuddy.handleCommand("add a quick brown fox");
+		TextBuddy.handleCommand("add jumps over a lazy dog");
+		TextBuddy.handleCommand("add how now brown cow");
+		TextBuddy.handleCommand("add black sheep wall");
+		TextBuddy.handleCommand("add grass of green");
+		TextBuddy.handleCommand("add grass of different colors");
+		TextBuddy.handleCommand("add B for bee");
+		assertEquals("simple sort with entries", "Sorted alphabetically",
+				TextBuddy.handleCommand("sort"));
+		assertEquals(7, TextBuddy.getLineCount());
+		assertEquals("display test after sort", 
+				"1. a quick brown fox\n"
+				+ "2. B for bee\n"
+				+ "3. black sheep wall\n"
+				+ "4. grass of different colors\n"
+				+ "5. grass of green\n"
+				+ "6. how now brown cow\n"
+				+ "7. jumps over a lazy dog",
+				TextBuddy.handleCommand("display"));
+		assertEquals("a quick brown fox\n"
+				+ "B for bee\n"
+				+ "black sheep wall\n"
+				+ "grass of different colors\n"
+				+ "grass of green\n"
+				+ "how now brown cow\n"
+				+ "jumps over a lazy dog\n",
+				TextBuddy.getCurrentFileContent());
 	}
 }
