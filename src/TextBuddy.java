@@ -48,6 +48,7 @@ public class TextBuddy {
 	private static final String MSG_CLEAR = "all content deleted from %s";
 	private static final String MSG_EMPTY_FILE = "%s is empty";
 	private static final String MSG_SEARCH_NOT_FOUND = "%s not found";
+	private static final String MSG_FOUND = "Found %d item(s):";
 	
 	private static final String END_LINE = "\n";
 	
@@ -61,6 +62,8 @@ public class TextBuddy {
 	
 	// This is used to indicate the position of parameter in the command line.
 	private static final int PARAM_POSITION = 1;
+	// This is used to indicate not found substring in a string, using in search function
+	private static final int SUBSTRING_NOT_FOUND = -1;
 	
 	// This ArrayList is used to store the texts
 	private static ArrayList<String> texts;
@@ -188,12 +191,27 @@ public class TextBuddy {
 	}
 	
 	private static String searchTexts(String parameter) {
-		String feedback;
+		String feedback = "";
 		if (parameter == null) {
 			feedback = String.format(MSG_INVALID_PARAM, "search");
-		} else
-		{
-			feedback = String.format(MSG_SEARCH_NOT_FOUND, parameter);
+		} else {
+			int numFoundItems = 0;
+			for (int i = 0; i<texts.size(); i++) {
+				String line = texts.get(i);
+				if (line.indexOf(parameter) != SUBSTRING_NOT_FOUND) {
+					numFoundItems++;
+					if (feedback == ""){
+						feedback += String.format(DISPLAY_FORMAT, i+1, line);
+					} else {
+						feedback += END_LINE + String.format(DISPLAY_FORMAT, i+1, line);
+					}
+				}
+			}
+			if (numFoundItems == 0) {
+				feedback = String.format(MSG_SEARCH_NOT_FOUND, parameter);
+			} else {
+				feedback = String.format(MSG_FOUND, numFoundItems) + END_LINE + feedback;
+			}
 		}
 		return feedback;
 	}
