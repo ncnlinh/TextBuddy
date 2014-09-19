@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -49,6 +50,7 @@ public class TextBuddy {
 	private static final String MSG_EMPTY_FILE = "%s is empty";
 	private static final String MSG_SEARCH_NOT_FOUND = "%s not found";
 	private static final String MSG_FOUND = "Found %d item(s):";
+	private static final String MSG_SORTED = "Sorted alphabetically";
 	
 	private static final String END_LINE = "\n";
 	
@@ -193,7 +195,13 @@ public class TextBuddy {
 	}
 	
 	private static String sortTexts() {
-		return String.format(MSG_EMPTY_FILE,file.getName());
+		if (texts.size() == 0) { 
+			return String.format(MSG_EMPTY_FILE,file.getName());
+		} else {
+			Collections.sort(texts, String.CASE_INSENSITIVE_ORDER);
+			writeToFile();
+			return MSG_SORTED;
+		}
 	}
 
 	private static String searchTexts(String parameter) {
