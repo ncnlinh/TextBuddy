@@ -47,7 +47,7 @@ public class TextBuddy {
 	private static final String MSG_DELETE = "deleted from %s: \"%s\"";
 	private static final String MSG_CLEAR = "all content deleted from %s";
 	private static final String MSG_EMPTY_FILE = "%s is empty";
-	
+	private static final String MSG_SEARCH_NOT_FOUND = "%s not found";
 	
 	private static final String END_LINE = "\n";
 	
@@ -188,7 +188,13 @@ public class TextBuddy {
 	}
 	
 	private static String searchTexts(String parameter) {
-		String feedback = String.format(MSG_INVALID_PARAM, "search");
+		String feedback;
+		if (parameter == null) {
+			feedback = String.format(MSG_INVALID_PARAM, "search");
+		} else
+		{
+			feedback = String.format(MSG_SEARCH_NOT_FOUND, parameter);
+		}
 		return feedback;
 	}
 
