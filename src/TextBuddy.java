@@ -74,7 +74,7 @@ public class TextBuddy {
 	
 	// These are the possible command types
 	private enum Command {
-		ADD, DISPLAY, DELETE, CLEAR, SEARCH, EXIT, INVALID
+		ADD, DISPLAY, DELETE, CLEAR, SEARCH, SORT, EXIT, INVALID
 	}
 	
 	public static void main(String args[]) {
@@ -180,6 +180,8 @@ public class TextBuddy {
 				return clearTexts();
 			case SEARCH:
 				return searchTexts(parameter);
+			case SORT:
+				return sortTexts();
 			case EXIT:
 				System.exit(0);
 			case INVALID:
@@ -190,6 +192,10 @@ public class TextBuddy {
 		}
 	}
 	
+	private static String sortTexts() {
+		return String.format(MSG_EMPTY_FILE,file.getName());
+	}
+
 	private static String searchTexts(String parameter) {
 		if (parameter == null) {
 			return String.format(MSG_INVALID_PARAM, "search");
@@ -370,6 +376,8 @@ public class TextBuddy {
 			return Command.CLEAR;
 		} else if (commandString.equalsIgnoreCase("search")) {
 			return Command.SEARCH;
+		} else if (commandString.equalsIgnoreCase("sort")) {
+			return Command.SORT;
 		} else if (commandString.equalsIgnoreCase("exit")) {
 			return Command.EXIT;
 		} else return Command.INVALID;
