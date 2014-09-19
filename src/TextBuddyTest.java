@@ -66,4 +66,9 @@ public class TextBuddyTest {
 				+ "3. how now brown cow",
 				TextBuddy.handleCommand("search brown"));
 	}
+	@Test
+	public void testSort(){
+		assertEquals("simple sort with empty list", String.format("%s is empty",TEST_FILE_NAME),
+				TextBuddy.handleCommand("sort"));
+	}
 }
